@@ -500,6 +500,10 @@ open class SideMenuController: UIViewController {
         // The problem with this approach is it will hide the status bar and it's underlying space completely, as a result,
         // the navigation bar will go up as we don't expect.
         // So we need to manipulate the windows of status bar manually.
+        
+        if #available(iOS 13.0, *) {
+            return
+        }
 
         let behavior = self.preferences.basic.statusBarBehavior
         guard let sbw = UIWindow.sb, sbw.isStatusBarHidden(with: behavior) != hidden else {
